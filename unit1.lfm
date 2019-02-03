@@ -1,0 +1,196 @@
+object Form1: TForm1
+  Left = 125
+  Height = 467
+  Top = 131
+  Width = 1110
+  Caption = 'Photo Finder'
+  ClientHeight = 467
+  ClientWidth = 1110
+  OnShow = FormShow
+  LCLVersion = '1.8.2.0'
+  object GroupBox1: TGroupBox
+    Left = 0
+    Height = 417
+    Top = 50
+    Width = 424
+    Align = alLeft
+    Caption = 'Folders to search'
+    ClientHeight = 397
+    ClientWidth = 420
+    TabOrder = 0
+    object ListView2: TListView
+      Left = 0
+      Height = 397
+      Top = 0
+      Width = 420
+      Align = alClient
+      Columns = <      
+        item
+          Caption = 'No'
+        end      
+        item
+          Caption = 'Folder'
+          Width = 350
+        end>
+      GridLines = True
+      RowSelect = True
+      TabOrder = 0
+      ViewStyle = vsReport
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 424
+    Height = 417
+    Top = 50
+    Width = 686
+    Align = alClient
+    Caption = 'Results'
+    ClientHeight = 397
+    ClientWidth = 682
+    TabOrder = 1
+    object ListView1: TListView
+      Left = 0
+      Height = 397
+      Top = 0
+      Width = 682
+      Align = alClient
+      Columns = <      
+        item
+          Caption = 'No'
+        end      
+        item
+          Caption = 'File'
+          Width = 150
+        end      
+        item
+          Caption = 'Folder'
+          Width = 300
+        end      
+        item
+          Caption = 'Size'
+          Width = 80
+        end      
+        item
+          Caption = 'Datetime'
+          Width = 80
+        end>
+      GridLines = True
+      RowSelect = True
+      TabOrder = 0
+      ViewStyle = vsReport
+      OnDblClick = ListView1DblClick
+    end
+  end
+  object GroupBox3: TGroupBox
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 1110
+    Align = alTop
+    ClientHeight = 30
+    ClientWidth = 1106
+    TabOrder = 2
+    object Button1: TButton
+      Left = 1016
+      Height = 25
+      Top = 0
+      Width = 75
+      Caption = 'List all files'
+      OnClick = Button1Click
+      TabOrder = 0
+    end
+    object Button2: TButton
+      Left = 928
+      Height = 25
+      Top = 0
+      Width = 75
+      Caption = 'Search...'
+      OnClick = Button2Click
+      TabOrder = 1
+    end
+    object Edit1: TEdit
+      Left = 7
+      Height = 23
+      Top = 2
+      Width = 216
+      TabOrder = 2
+    end
+    object Button3: TButton
+      Left = 320
+      Height = 25
+      Top = 1
+      Width = 145
+      Caption = 'Add folder to search list'
+      OnClick = Button3Click
+      TabOrder = 3
+    end
+    object Button4: TButton
+      Left = 224
+      Height = 25
+      Top = 1
+      Width = 96
+      Caption = 'Select folder'
+      OnClick = Button4Click
+      TabOrder = 4
+    end
+  end
+  object SQLConnector1: TSQLConnector
+    Connected = False
+    LoginPrompt = False
+    DatabaseName = 'C:\Projekte\delphi\db.s3db'
+    KeepConnection = False
+    Transaction = SQLTransaction1
+    ConnectorType = 'SQLite3'
+    left = 64
+    top = 272
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    Action = caCommitRetaining
+    Database = SQLConnector1
+    left = 160
+    top = 272
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'arquivo'
+        DataType = ftString
+        Precision = -1
+        Size = 100
+      end    
+      item
+        Name = 'caminho'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'tamanho'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'time'
+        DataType = ftInteger
+        Precision = -1
+      end>
+    Database = SQLConnector1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from fotos'
+    )
+    Params = <>
+    left = 264
+    top = 272
+  end
+  object SelectDirectoryDialog1: TSelectDirectoryDialog
+    left = 186
+    top = 179
+  end
+end

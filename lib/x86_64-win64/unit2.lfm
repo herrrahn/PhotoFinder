@@ -1,0 +1,18 @@
+object Form2: TForm2
+  Left = 402
+  Height = 383
+  Top = 119
+  Width = 573
+  Caption = 'Form2'
+  ClientHeight = 383
+  ClientWidth = 573
+  LCLVersion = '1.8.2.0'
+  object Image1: TImage
+    Left = 0
+    Height = 383
+    Top = 0
+    Width = 573
+    Align = alClient
+    Proportional = True
+  end
+end
